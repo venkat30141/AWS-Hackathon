@@ -1,0 +1,2498 @@
+/* =========================================================
+   BEAN & BREW — ADVANCED APP STYLES
+   React + Spring Boot Coffee Shop
+   ========================================================= */
+
+/* =========================================================
+   1. ROOT / VARIABLES
+   ========================================================= */
+
+:root {
+  --coffee-950: #1b100b;
+  --coffee-900: #2a160e;
+  --coffee-850: #321b11;
+  --coffee-800: #3d2115;
+  --coffee-700: #542d1a;
+  --coffee-600: #70401f;
+  --coffee-500: #96582b;
+  --coffee-400: #b87333;
+  --coffee-300: #cf8d4c;
+  --coffee-200: #e2b47d;
+  --coffee-100: #f4dfc5;
+
+  --cream-50: #fffdf9;
+  --cream-100: #fff8ef;
+  --cream-200: #f9eee1;
+  --cream-300: #f2dfca;
+
+  --white: #ffffff;
+  --black: #111111;
+
+  --text-primary: #2c1b12;
+  --text-secondary: #6f5a4d;
+  --text-muted: #917b6d;
+
+  --success: #287a52;
+  --success-bg: #e8f6ed;
+
+  --warning: #a86a14;
+  --warning-bg: #fff4dd;
+
+  --danger: #a83b32;
+  --danger-bg: #fdebea;
+
+  --info: #326b91;
+  --info-bg: #eaf5fb;
+
+  --border: rgba(99, 55, 28, 0.14);
+  --border-strong: rgba(99, 55, 28, 0.24);
+
+  --shadow-xs:
+    0 2px 8px rgba(43, 24, 14, 0.05);
+
+  --shadow-sm:
+    0 6px 20px rgba(43, 24, 14, 0.08);
+
+  --shadow-md:
+    0 14px 40px rgba(43, 24, 14, 0.12);
+
+  --shadow-lg:
+    0 24px 70px rgba(43, 24, 14, 0.16);
+
+  --shadow-xl:
+    0 35px 100px rgba(43, 24, 14, 0.2);
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  --transition-fast: 0.18s ease;
+  --transition: 0.28s ease;
+  --transition-slow: 0.45s ease;
+
+  --container: 1280px;
+}
+
+/* =========================================================
+   2. GLOBAL RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--text-primary);
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(184, 115, 51, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(112, 64, 31, 0.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fffdf9 0%,
+      #fdf6ed 45%,
+      #f7ecdf 100%
+    );
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      rgba(112, 64, 31, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 24px 24px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 80%
+  );
+
+  z-index: -1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   3. TEXT SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--coffee-400);
+  color: white;
+}
+
+/* =========================================================
+   4. SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3e7da;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--coffee-400),
+    var(--coffee-700)
+  );
+
+  border-radius: 999px;
+  border: 2px solid #f3e7da;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--coffee-600);
+}
+
+/* =========================================================
+   5. PAGE SHELL
+   ========================================================= */
+
+.page-shell {
+  min-height: 100vh;
+  position: relative;
+
+  padding-bottom: 70px;
+
+  overflow-x: hidden;
+}
+
+.page-shell::before {
+  content: "";
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  top: 100px;
+  right: -220px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(184, 115, 51, 0.11),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+.page-shell::after {
+  content: "";
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  left: -200px;
+  bottom: 100px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(112, 64, 31, 0.08),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   6. NAVIGATION
+   ========================================================= */
+
+.top-nav {
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 76px;
+
+  padding: 0 5vw;
+
+  background:
+    rgba(255, 253, 249, 0.84);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border-bottom:
+    1px solid rgba(112, 64, 31, 0.12);
+
+  box-shadow:
+    0 8px 30px rgba(43, 24, 14, 0.055);
+}
+
+.top-nav::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(184, 115, 51, 0.35),
+      transparent
+    );
+}
+
+/* Brand */
+
+.brand-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 1.65rem;
+  font-weight: 800;
+
+  letter-spacing: -0.045em;
+
+  color: var(--coffee-900);
+
+  transition:
+    transform var(--transition),
+    color var(--transition);
+}
+
+.brand-link::before {
+  content: "☕";
+
+  font-family: sans-serif;
+
+  font-size: 1.25rem;
+
+  filter:
+    drop-shadow(
+      0 5px 8px rgba(112, 64, 31, 0.16)
+    );
+}
+
+.brand-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 35px;
+  bottom: -5px;
+
+  width: 0;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--coffee-400),
+      var(--coffee-700)
+    );
+
+  transition: width var(--transition);
+}
+
+.brand-link:hover {
+  color: var(--coffee-600);
+  transform: translateY(-1px);
+}
+
+.brand-link:hover::after {
+  width: 60px;
+}
+
+/* Navigation */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.small-nav a,
+.nav-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 0 15px;
+
+  border-radius: 999px;
+
+  border: 1px solid transparent;
+
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+  font-weight: 650;
+
+  transition:
+    color var(--transition),
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.small-nav a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 15px;
+  right: 15px;
+  bottom: 4px;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  transform: scaleX(0);
+
+  background: var(--coffee-500);
+
+  transition:
+    transform var(--transition);
+}
+
+.small-nav a:hover {
+  color: var(--coffee-700);
+
+  background:
+    rgba(184, 115, 51, 0.07);
+
+  border-color:
+    rgba(184, 115, 51, 0.12);
+
+  transform: translateY(-1px);
+}
+
+.small-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-button {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--coffee-500),
+      var(--coffee-700)
+    );
+
+  box-shadow:
+    0 7px 18px rgba(112, 64, 31, 0.2);
+}
+
+.nav-button:hover {
+  color: white;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 24px rgba(112, 64, 31, 0.28);
+}
+
+/* =========================================================
+   7. LANDING PAGE
+   ========================================================= */
+
+.landing-page {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(184, 115, 51, 0.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 15% 75%,
+      rgba(112, 64, 31, 0.08),
+      transparent 28%
+    );
+}
+
+/* =========================================================
+   8. HERO
+   ========================================================= */
+
+.hero-section {
+  position: relative;
+
+  max-width: 1280px;
+
+  min-height: calc(100vh - 76px);
+
+  margin: 0 auto;
+
+  padding:
+    90px 5vw
+    100px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(320px, 0.75fr);
+
+  align-items: center;
+
+  gap: 80px;
+}
+
+/* Decorative coffee glow */
+
+.hero-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  right: 3%;
+  top: 12%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(184, 115, 51, 0.16),
+      rgba(184, 115, 51, 0.05) 42%,
+      transparent 70%
+    );
+
+  filter: blur(2px);
+
+  animation:
+    floatingGlow 8s ease-in-out infinite;
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+@keyframes floatingGlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-15px, 20px, 0) scale(1.04);
+  }
+}
+
+.hero-copy {
+  position: relative;
+
+  animation:
+    heroFade 0.8s ease both;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 0 0 20px;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  border:
+    1px solid rgba(184, 115, 51, 0.18);
+
+  background:
+    rgba(184, 115, 51, 0.07);
+
+  color: var(--coffee-600);
+
+  font-size: 0.78rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--coffee-400);
+
+  box-shadow:
+    0 0 0 5px rgba(184, 115, 51, 0.1);
+}
+
+.hero-copy h1 {
+  max-width: 800px;
+
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(3.2rem, 7vw, 6.8rem);
+
+  line-height: 0.92;
+
+  letter-spacing: -0.065em;
+
+  color: var(--coffee-950);
+}
+
+.hero-copy h1::after {
+  content: "";
+
+  display: block;
+
+  width: 90px;
+  height: 6px;
+
+  margin-top: 28px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--coffee-400),
+      var(--coffee-700)
+    );
+}
+
+.subtitle {
+  max-width: 620px;
+
+  margin: 30px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 1.12rem;
+
+  line-height: 1.8;
+}
+
+/* Hero actions */
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-top: 34px;
+}
+
+/* =========================================================
+   9. BUTTON SYSTEM
+   ========================================================= */
+
+.primary-btn,
+.secondary-btn,
+.stack-form button,
+.small-btn {
+  position: relative;
+
+  overflow: hidden;
+
+  border: 0;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 50px;
+
+  padding:
+    0 23px;
+
+  border-radius: 14px;
+
+  font-size: 0.93rem;
+  font-weight: 750;
+}
+
+.primary-btn {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--coffee-500),
+      var(--coffee-700)
+    );
+
+  box-shadow:
+    0 12px 28px rgba(112, 64, 31, 0.22);
+}
+
+.primary-btn::before,
+.stack-form button::before,
+.small-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 100%;
+
+  transform: skewX(-20deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.18),
+      transparent
+    );
+
+  transition: left 0.6s ease;
+}
+
+.primary-btn:hover::before,
+.stack-form button:hover::before,
+.small-btn:hover::before {
+  left: 140%;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 18px 35px rgba(112, 64, 31, 0.28);
+}
+
+.primary-btn:active {
+  transform: translateY(-1px);
+}
+
+.secondary-btn {
+  color: var(--coffee-700);
+
+  background:
+    rgba(255, 255, 255, 0.7);
+
+  border:
+    1px solid rgba(112, 64, 31, 0.17);
+
+  box-shadow:
+    var(--shadow-xs);
+}
+
+.secondary-btn:hover {
+  color: var(--coffee-900);
+
+  background: white;
+
+  border-color:
+    rgba(112, 64, 31, 0.28);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    var(--shadow-sm);
+}
+
+/* =========================================================
+   10. GLASS CARD
+   ========================================================= */
+
+.glass-card {
+  position: relative;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.84),
+      rgba(255, 250, 243, 0.67)
+    );
+
+  border:
+    1px solid rgba(112, 64, 31, 0.13);
+
+  box-shadow:
+    var(--shadow-md);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* =========================================================
+   11. HERO CARD
+   ========================================================= */
+
+.hero-card {
+  padding: 38px;
+
+  border-radius: var(--radius-xl);
+
+  transform:
+    rotate(1.5deg);
+
+  animation:
+    cardFloat 7s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(1.5deg);
+  }
+
+  50% {
+    transform:
+      translateY(-12px)
+      rotate(-1deg);
+  }
+}
+
+.hero-card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4),
+      transparent 45%
+    );
+
+  pointer-events: none;
+}
+
+.hero-card h3 {
+  position: relative;
+
+  margin: 0;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 2rem;
+
+  color: var(--coffee-900);
+}
+
+.hero-card > p {
+  position: relative;
+
+  margin: 16px 0 28px;
+
+  color: var(--text-secondary);
+
+  line-height: 1.7;
+}
+
+.stat-row {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 17px 0;
+
+  border-top:
+    1px solid rgba(112, 64, 31, 0.1);
+}
+
+.stat-row span {
+  color: var(--text-muted);
+
+  font-size: 0.87rem;
+}
+
+.stat-row strong {
+  color: var(--coffee-700);
+
+  font-size: 0.92rem;
+}
+
+/* =========================================================
+   12. PAGE HEADING
+   ========================================================= */
+
+.page-heading {
+  max-width: var(--container);
+
+  margin: 0 auto;
+
+  padding:
+    65px 5vw
+    35px;
+}
+
+.page-heading h1 {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    clamp(2.5rem, 5vw, 4.5rem);
+
+  line-height: 1;
+
+  letter-spacing: -0.055em;
+
+  color: var(--coffee-950);
+}
+
+.page-heading h1::after {
+  content: "";
+
+  display: block;
+
+  width: 65px;
+  height: 4px;
+
+  margin-top: 18px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--coffee-400),
+      var(--coffee-700)
+    );
+}
+
+.page-heading p {
+  margin: 20px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 1rem;
+}
+
+/* =========================================================
+   13. INFO BOX
+   ========================================================= */
+
+.info-box {
+  max-width: var(--container);
+
+  margin:
+    20px auto;
+
+  padding:
+    15px 18px;
+
+  border-radius: 14px;
+
+  border:
+    1px solid rgba(112, 64, 31, 0.12);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.88),
+      rgba(249, 238, 225, 0.82)
+    );
+
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+
+  box-shadow:
+    var(--shadow-xs);
+
+  animation:
+    messageIn 0.3s ease both;
+}
+
+@keyframes messageIn {
+  from {
+    opacity: 0;
+    transform: translateY(-7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   14. COFFEE GRID
+   ========================================================= */
+
+.coffee-grid {
+  max-width: var(--container);
+
+  margin: 10px auto 0;
+
+  padding:
+    0 5vw
+    60px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+/* =========================================================
+   15. COFFEE CARD
+   ========================================================= */
+
+.coffee-card {
+  min-height: 270px;
+
+  padding: 27px;
+
+  border-radius: var(--radius-lg);
+
+  overflow: hidden;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.coffee-card::before {
+  content: "☕";
+
+  position: absolute;
+
+  right: 20px;
+  bottom: 7px;
+
+  font-size: 5.5rem;
+
+  opacity: 0.045;
+
+  transform:
+    rotate(-15deg);
+
+  pointer-events: none;
+}
+
+.coffee-card::after {
+  content: "";
+
+  position: absolute;
+
+  top: -80px;
+  right: -80px;
+
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(184, 115, 51, 0.13),
+      transparent 68%
+    );
+
+  transition:
+    transform var(--transition-slow);
+}
+
+.coffee-card:hover {
+  transform:
+    translateY(-8px);
+
+  border-color:
+    rgba(184, 115, 51, 0.27);
+
+  box-shadow:
+    0 25px 55px rgba(43, 24, 14, 0.15);
+}
+
+.coffee-card:hover::after {
+  transform:
+    scale(1.35);
+}
+
+.coffee-card-header {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  z-index: 1;
+}
+
+.coffee-card h3 {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 1.45rem;
+
+  line-height: 1.2;
+
+  color: var(--coffee-900);
+}
+
+.coffee-category {
+  display: inline-flex;
+
+  margin: 15px 0 0;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(184, 115, 51, 0.08);
+
+  color: var(--coffee-600);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.coffee-description {
+  position: relative;
+
+  min-height: 55px;
+
+  margin: 18px 0;
+
+  color: var(--text-secondary);
+
+  line-height: 1.65;
+
+  font-size: 0.9rem;
+
+  z-index: 1;
+}
+
+.coffee-price {
+  position: relative;
+
+  margin-top: 20px;
+
+  font-size: 1.65rem;
+
+  font-weight: 850;
+
+  color: var(--coffee-700);
+
+  z-index: 1;
+}
+
+/* =========================================================
+   16. AVAILABILITY STATUS
+   ========================================================= */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  flex-shrink: 0;
+
+  padding:
+    7px 10px;
+
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.status::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+}
+
+.status.available {
+  color: var(--success);
+
+  background: var(--success-bg);
+}
+
+.status.available::before {
+  background: var(--success);
+
+  box-shadow:
+    0 0 0 4px rgba(40, 122, 82, 0.1);
+}
+
+.status.unavailable {
+  color: var(--danger);
+
+  background: var(--danger-bg);
+}
+
+.status.unavailable::before {
+  background: var(--danger);
+}
+
+/* =========================================================
+   17. AUTH PAGE
+   ========================================================= */
+
+.auth-page {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(184, 115, 51, 0.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 75%,
+      rgba(112, 64, 31, 0.1),
+      transparent 30%
+    );
+}
+
+.auth-page::before {
+  content: "BEAN & BREW";
+
+  position: fixed;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-18deg);
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(5rem, 15vw, 14rem);
+
+  font-weight: 900;
+
+  color:
+    rgba(112, 64, 31, 0.025);
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+.auth-card {
+  width:
+    min(460px, calc(100% - 32px));
+
+  margin:
+    70px auto;
+
+  padding:
+    42px;
+
+  border-radius:
+    30px;
+
+  box-shadow:
+    var(--shadow-xl);
+
+  animation:
+    authAppear 0.65s ease both;
+}
+
+@keyframes authAppear {
+  from {
+    opacity: 0;
+    transform:
+      translateY(30px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+.auth-card::before {
+  content: "☕";
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 65px;
+  height: 65px;
+
+  margin-bottom: 24px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--coffee-500),
+      var(--coffee-700)
+    );
+
+  color: white;
+
+  font-size: 1.8rem;
+
+  box-shadow:
+    0 15px 30px rgba(112, 64, 31, 0.2);
+}
+
+.auth-card h2 {
+  margin: 0;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 2.4rem;
+
+  letter-spacing: -0.045em;
+
+  color: var(--coffee-950);
+}
+
+.auth-card > p {
+  margin:
+    12px 0 28px;
+
+  color: var(--text-secondary);
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   18. FORMS
+   ========================================================= */
+
+.stack-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.stack-form input,
+.stack-form select,
+.stack-form textarea,
+.auth-card input {
+  width: 100%;
+
+  padding:
+    14px 16px;
+
+  border:
+    1px solid rgba(112, 64, 31, 0.17);
+
+  border-radius: 13px;
+
+  outline: none;
+
+  color: var(--text-primary);
+
+  background:
+    rgba(255, 255, 255, 0.75);
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition),
+    transform var(--transition);
+}
+
+.stack-form input,
+.stack-form select,
+.stack-form textarea {
+  min-height: 51px;
+}
+
+.stack-form textarea {
+  min-height: 115px;
+
+  resize: vertical;
+}
+
+.stack-form input::placeholder,
+.stack-form textarea::placeholder {
+  color: #a18b7d;
+}
+
+.stack-form input:hover,
+.stack-form select:hover,
+.stack-form textarea:hover {
+  border-color:
+    rgba(112, 64, 31, 0.27);
+
+  background: white;
+}
+
+.stack-form input:focus,
+.stack-form select:focus,
+.stack-form textarea:focus,
+.auth-card input:focus {
+  border-color:
+    var(--coffee-400);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(184, 115, 51, 0.1);
+}
+
+.stack-form button {
+  position: relative;
+
+  min-height: 52px;
+
+  margin-top: 5px;
+
+  padding:
+    0 20px;
+
+  border-radius: 13px;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--coffee-500),
+      var(--coffee-700)
+    );
+
+  font-weight: 800;
+
+  box-shadow:
+    0 12px 25px rgba(112, 64, 31, 0.2);
+}
+
+.stack-form button:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 17px 32px rgba(112, 64, 31, 0.27);
+}
+
+/* =========================================================
+   19. CHECKBOX
+   ========================================================= */
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding:
+    8px 2px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+}
+
+.checkbox-row input {
+  appearance: none;
+
+  width: 20px;
+  height: 20px;
+
+  padding: 0;
+
+  border-radius: 6px;
+
+  border:
+    1px solid rgba(112, 64, 31, 0.25);
+
+  background: white;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.checkbox-row input:checked {
+  background:
+    linear-gradient(
+      135deg,
+      var(--coffee-400),
+      var(--coffee-700)
+    );
+
+  border-color:
+    var(--coffee-600);
+
+  box-shadow:
+    0 0 0 4px rgba(184, 115, 51, 0.1);
+}
+
+.checkbox-row input:checked::after {
+  content: "✓";
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  color: white;
+
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+/* =========================================================
+   20. TWO COLUMN LAYOUT
+   ========================================================= */
+
+.two-column-layout {
+  max-width: var(--container);
+
+  margin:
+    10px auto 30px;
+
+  padding:
+    0 5vw;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(300px, 0.75fr)
+    minmax(0, 1.35fr);
+
+  gap: 25px;
+
+  align-items: start;
+}
+
+/* =========================================================
+   21. PANELS
+   ========================================================= */
+
+.panel {
+  border-radius: var(--radius-lg);
+
+  padding: 28px;
+
+  overflow: hidden;
+}
+
+.panel h2 {
+  margin:
+    0 0 24px;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 1.55rem;
+
+  letter-spacing: -0.03em;
+
+  color: var(--coffee-900);
+}
+
+.panel h2::after {
+  content: "";
+
+  display: block;
+
+  width: 40px;
+  height: 3px;
+
+  margin-top: 10px;
+
+  border-radius: 999px;
+
+  background: var(--coffee-400);
+}
+
+/* =========================================================
+   22. BUTTON ROW
+   ========================================================= */
+
+.button-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.button-row .secondary-btn {
+  min-height: 48px;
+
+  padding:
+    0 18px;
+}
+
+/* =========================================================
+   23. TABLE WRAPPER
+   ========================================================= */
+
+.table-wrap {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border-radius: 15px;
+
+  border:
+    1px solid rgba(112, 64, 31, 0.1);
+
+  background:
+    rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================
+   24. TABLE
+   ========================================================= */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 650px;
+}
+
+thead {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(112, 64, 31, 0.08),
+      rgba(184, 115, 51, 0.06)
+    );
+}
+
+th {
+  padding:
+    14px 16px;
+
+  color: var(--coffee-700);
+
+  font-size: 0.72rem;
+
+  font-weight: 850;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.07em;
+
+  text-align: left;
+
+  white-space: nowrap;
+}
+
+td {
+  padding:
+    15px 16px;
+
+  border-top:
+    1px solid rgba(112, 64, 31, 0.08);
+
+  color: var(--text-secondary);
+
+  font-size: 0.87rem;
+
+  vertical-align: middle;
+}
+
+tbody tr {
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+tbody tr:hover {
+  background:
+    rgba(184, 115, 51, 0.055);
+}
+
+tbody tr:hover td {
+  color: var(--text-primary);
+}
+
+/* =========================================================
+   25. ORDER STATUS
+   ========================================================= */
+
+.order-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding:
+    7px 11px;
+
+  border-radius: 999px;
+
+  font-size: 0.67rem;
+
+  font-weight: 850;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+.order-status.placed {
+  color: var(--info);
+
+  background:
+    var(--info-bg);
+}
+
+.order-status.preparing {
+  color: var(--warning);
+
+  background:
+    var(--warning-bg);
+}
+
+.order-status.ready {
+  color: var(--coffee-700);
+
+  background:
+    rgba(184, 115, 51, 0.12);
+}
+
+.order-status.completed {
+  color: var(--success);
+
+  background:
+    var(--success-bg);
+}
+
+.order-status.cancelled {
+  color: var(--danger);
+
+  background:
+    var(--danger-bg);
+}
+
+/* =========================================================
+   26. INLINE ACTIONS
+   ========================================================= */
+
+.inline-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  white-space: nowrap;
+}
+
+.small-btn {
+  min-height: 34px;
+
+  padding:
+    0 12px;
+
+  border-radius: 9px;
+
+  color: var(--coffee-700);
+
+  background:
+    rgba(184, 115, 51, 0.09);
+
+  border:
+    1px solid rgba(184, 115, 51, 0.12);
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+}
+
+.small-btn:hover {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--coffee-500),
+      var(--coffee-700)
+    );
+
+  border-color: transparent;
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 15px rgba(112, 64, 31, 0.18);
+}
+
+.small-btn.danger {
+  color: var(--danger);
+
+  background:
+    var(--danger-bg);
+
+  border-color:
+    rgba(168, 59, 50, 0.12);
+}
+
+.small-btn.danger:hover {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #b84c42,
+      #8e2f29
+    );
+
+  border-color: transparent;
+}
+
+/* =========================================================
+   27. ADMIN DASHBOARD
+   ========================================================= */
+
+.dashboard-stats {
+  max-width: var(--container);
+
+  margin:
+    5px auto 30px;
+
+  padding:
+    0 5vw;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.stat-card {
+  position: relative;
+
+  min-height: 145px;
+
+  padding: 24px;
+
+  border-radius: var(--radius-lg);
+
+  overflow: hidden;
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.stat-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -25px;
+  top: -30px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(184, 115, 51, 0.08);
+}
+
+.stat-card::after {
+  content: "☕";
+
+  position: absolute;
+
+  right: 15px;
+  bottom: 4px;
+
+  font-size: 3rem;
+
+  opacity: 0.06;
+}
+
+.stat-card:hover {
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    var(--shadow-lg);
+}
+
+.stat-card span {
+  position: relative;
+
+  z-index: 1;
+
+  display: block;
+
+  color: var(--text-muted);
+
+  font-size: 0.78rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.07em;
+}
+
+.stat-card strong {
+  position: relative;
+
+  z-index: 1;
+
+  display: block;
+
+  margin-top: 13px;
+
+  color: var(--coffee-900);
+
+  font-size: 2.35rem;
+
+  font-weight: 900;
+
+  letter-spacing: -0.04em;
+}
+
+.admin-orders {
+  max-width: var(--container);
+
+  margin:
+    0 auto;
+
+  padding:
+    0 5vw 50px;
+}
+
+.admin-orders.glass-card {
+  padding:
+    28px;
+}
+
+/* =========================================================
+   28. SELECT STYLING
+   ========================================================= */
+
+select {
+  appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--coffee-500) 50%),
+    linear-gradient(135deg, var(--coffee-500) 50%, transparent 50%);
+
+  background-position:
+    calc(100% - 17px) 50%,
+    calc(100% - 12px) 50%;
+
+  background-size:
+    5px 5px,
+    5px 5px;
+
+  background-repeat: no-repeat;
+
+  padding-right: 38px !important;
+}
+
+/* =========================================================
+   29. LOADING STATE
+   ========================================================= */
+
+.info-box:has(+ .coffee-grid) {
+  position: relative;
+}
+
+button:disabled {
+  position: relative;
+}
+
+button:disabled::after {
+  content: "";
+
+  width: 15px;
+  height: 15px;
+
+  margin-left: 9px;
+
+  display: inline-block;
+
+  vertical-align: -2px;
+
+  border:
+    2px solid rgba(255, 255, 255, 0.35);
+
+  border-top-color: white;
+
+  border-radius: 50%;
+
+  animation:
+    spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   30. EMPTY TABLE STATE
+   ========================================================= */
+
+tbody:empty::after {
+  content: "No records available";
+
+  display: block;
+
+  padding: 35px;
+
+  color: var(--text-muted);
+
+  text-align: center;
+}
+
+/* =========================================================
+   31. FOCUS ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+  outline:
+    3px solid rgba(184, 115, 51, 0.32);
+
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   32. MOBILE NAVIGATION
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .top-nav {
+    padding:
+      0 20px;
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+
+    padding-top: 65px;
+  }
+
+  .hero-card {
+    max-width: 600px;
+
+    width: 100%;
+
+    margin: 0 auto;
+  }
+
+  .coffee-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .two-column-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   33. TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .top-nav {
+    min-height: auto;
+
+    padding:
+      16px 18px;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .main-nav {
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding-bottom: 3px;
+
+    justify-content: flex-start;
+  }
+
+  .small-nav a,
+  .nav-button {
+    flex-shrink: 0;
+
+    min-height: 38px;
+
+    padding:
+      0 12px;
+
+    font-size: 0.8rem;
+  }
+
+  .hero-section {
+    padding:
+      55px 22px 75px;
+
+    min-height: auto;
+  }
+
+  .hero-copy h1 {
+    font-size:
+      clamp(3rem, 15vw, 5rem);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    flex: 1;
+
+    min-width: 145px;
+  }
+
+  .page-heading {
+    padding:
+      50px 22px 30px;
+  }
+
+  .page-heading h1 {
+    font-size:
+      clamp(2.4rem, 12vw, 3.8rem);
+  }
+
+  .coffee-grid {
+    grid-template-columns: 1fr;
+
+    padding:
+      0 22px 45px;
+  }
+
+  .two-column-layout {
+    padding:
+      0 22px;
+  }
+
+  .dashboard-stats {
+    padding:
+      0 22px;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-orders {
+    padding:
+      0 22px 45px;
+  }
+
+  .panel {
+    padding: 22px;
+  }
+}
+
+/* =========================================================
+   34. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .brand-link {
+    font-size: 1.4rem;
+  }
+
+  .main-nav {
+    gap: 3px;
+  }
+
+  .small-nav a,
+  .nav-button {
+    padding:
+      0 9px;
+
+    font-size: 0.74rem;
+  }
+
+  .hero-section {
+    padding:
+      45px 17px 60px;
+  }
+
+  .hero-copy h1 {
+    font-size:
+      clamp(2.8rem, 17vw, 4rem);
+
+    line-height: 0.94;
+  }
+
+  .hero-copy h1::after {
+    width: 60px;
+
+    height: 4px;
+
+    margin-top: 22px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;
+  }
+
+  .hero-card {
+    padding: 26px;
+
+    border-radius: 22px;
+  }
+
+  .auth-card {
+    margin:
+      40px auto;
+
+    padding:
+      28px 22px;
+
+    border-radius: 24px;
+  }
+
+  .auth-card h2 {
+    font-size: 2rem;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .stat-card {
+    min-height: 125px;
+  }
+
+  .stat-card strong {
+    font-size: 2rem;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .coffee-card {
+    padding: 22px;
+
+    min-height: 250px;
+  }
+
+  .coffee-card-header {
+    flex-direction: column;
+  }
+
+  .status {
+    align-self: flex-start;
+  }
+
+  .button-row {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .button-row > * {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   35. VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .top-nav {
+    padding:
+      13px 12px;
+  }
+
+  .brand-link {
+    font-size: 1.25rem;
+  }
+
+  .small-nav a,
+  .nav-button {
+    padding:
+      0 7px;
+
+    font-size: 0.68rem;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.7rem;
+  }
+
+  .page-heading {
+    padding:
+      40px 16px 25px;
+  }
+
+  .coffee-grid,
+  .two-column-layout,
+  .dashboard-stats,
+  .admin-orders {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* =========================================================
+   36. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   37. PRINT
+   ========================================================= */
+
+@media print {
+  .top-nav,
+  .hero-actions,
+  button {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .page-shell {
+    padding: 0;
+  }
+
+  .glass-card {
+    box-shadow: none;
+
+    border:
+      1px solid #ddd;
+
+    background: white;
+  }
+
+  table {
+    min-width: 0;
+  }
+}
